@@ -1,138 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Upload</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      text-align: center;
-    }
-    .drop-box {
-      width: 80%;
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 40px;
-      border: 3px dashed #aaa;
-      border-radius: 10px;
-      background-color: #fff;
-      cursor: pointer;
-    }
-    .drop-box:hover {
-      border-color: #666;
-    }
-    .platform {
-      display: inline-block;
-      margin: 20px 10px;
-    }
-    .platform img {
-      width: 50px;
-      height: 50px;
-    }
-    .upload-btn {
-      display: block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .upload-btn:hover {
-      background-color: #218838;
-    }
-    #upload-all-btn {
-      margin-top: 40px;
-      padding: 15px 30px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #upload-all-btn:hover {
-      background-color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Video Upload</h1>
-
-  <div class="drop-box" id="dropBox">
-    <p>Drag and drop your video here</p>
-  </div>
-
-  <div class="platforms">
-    <div class="platform">
-      <img src="instagram-logo.png" alt="Instagram Logo">
-      <button class="upload-btn">Upload to Instagram</button>
-    </div>
-    <div class="platform">
-      <img src="tiktok-logo.png" alt="TikTok Logo">
-      <button class="upload-btn">Upload to TikTok</button>
-    </div>
-    <div class="platform">
-      <img src="facebook-logo.png" alt="Facebook Logo">
-      <button class="upload-btn">Upload to Facebook</button>
-    </div>
-    <div class="platform">
-      <img src="youtube-logo.png" alt="YouTube Logo">
-      <button class="upload-btn">Upload to YouTube</button>
-    </div>
-    <div class="platform">
-      <img src="twitter-logo.png" alt="Twitter Logo">
-      <button class="upload-btn">Upload to Twitter</button>
-    </div>
-    <div class="platform">
-      <img src="reddit-logo.png" alt="Reddit Logo">
-      <button class="upload-btn">Upload to Reddit</button>
-    </div>
-    <div class="platform">
-      <img src="snapchat-logo.png" alt="Snapchat Logo">
-      <button class="upload-btn">Upload to Snapchat</button>
-    </div>
-  </div>
-
-  <button id="upload-all-btn">Upload to All Platforms</button>
-
-  <script>
-    const dropBox = document.getElementById('dropBox');
-    
-    dropBox.addEventListener('dragover', (event) => {
-      event.preventDefault();
-      dropBox.style.borderColor = '#333';
-    });
-    
-    dropBox.addEventListener('dragleave', () => {
-      dropBox.style.borderColor = '#aaa';
-    });
-    
-    dropBox.addEventListener('drop', (event) => {
-      event.preventDefault();
-      dropBox.style.borderColor = '#aaa';
-      const files = event.dataTransfer.files;
-      if (files.length) {
-        alert('Video file dropped: ' + files[0].name);
-        // You can handle file upload logic here
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Upload</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1e1e1e;
+        color: #fff;
+        text-align: center;
       }
-    });
-    
-    document.querySelectorAll('.upload-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        alert('Uploading video to ' + button.previousElementSibling.alt.split(' ')[0]);
-        // Add upload logic for each platform here
-      });
-    });
+      .drop-box {
+        width: 80%;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 40px;
+        border: 3px dashed #aaa;
+        border-radius: 10px;
+        background-color: #333;
+        cursor: pointer;
+      }
+      .drop-box:hover {
+        border-color: #666;
+      }
+      .platform {
+        display: inline-block;
+        margin: 20px 10px;
+      }
+      .platform img {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px; /* Rounds the icon edges */
+      }
+      .upload-btn {
+        display: block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: #6f42c1; /* purple */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .upload-btn:hover {
+        background-color: #5a36a3;
+      }
+      .upload-all-btn {
+        background-color: #007bff;
+        margin-top: 30px;
+      }
+      .upload-all-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Upload Your Video</h1>
+    <div class="drop-box">
+      <p>Drag and drop your video here or click to upload</p>
+    </div>
 
-    document.getElementById('upload-all-btn').addEventListener('click', () => {
-      alert('Uploading to all platforms...');
-      // Add logic to upload to all platforms at once here
-    });
-  </script>
-  
-</body>
+    <div class="platforms">
+      <div class="platform">
+        <img src="/icons/instagram.jpeg" alt="Instagram" />
+        <button class="upload-btn" onclick="simulateUpload(this)">
+          Start Upload
+        </button>
+      </div>
+      <div class="platform">
+        <img src="/icons/facebook.png" alt="Facebook" />
+        <button class="upload-btn" onclick="simulateUpload(this)">
+          Start Upload
+        </button>
+      </div>
+      <div class="platform">
+        <img src="/icons/reddit.png" alt="Reddit" />
+        <button class="upload-btn" onclick="simulateUpload(this)">
+          Start Upload
+        </button>
+      </div>
+      <div class="platform">
+        <img src="/icons/snapchat.png" alt="Snapchat" />
+        <button class="upload-btn" onclick="simulateUpload(this)">
+          Start Upload
+        </button>
+      </div>
+      <div class="platform">
+        <img src="/icons/tiktok.png" alt="TikTok" />
+        <button class="upload-btn" onclick="simulateUpload(this)">
+          Start Upload
+        </button>
+      </div>
+      <div class="platform">
+        <img src="/icons/twitter.jpg" alt="Twitter" />
+        <button class="upload-btn" onclick="simulateUpload(this)">
+          Start Upload
+        </button>
+      </div>
+      <div class="platform">
+        <img src="/icons/youtube.png" alt="YouTube" />
+        <button class="upload-btn" onclick="simulateUpload(this)">
+          Start Upload
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function simulateUpload(button) {
+        button.innerText = "Starting...";
+        button.style.backgroundColor = "#fd7e14"; // orange
+
+        setTimeout(() => {
+          button.innerText = "Uploading...";
+          button.style.backgroundColor = "#ffc107"; // yellow
+
+          setTimeout(() => {
+            // Random success or failure
+            const success = Math.random() > 0.33;
+
+            if (success) {
+              button.innerText = "Success";
+              button.style.backgroundColor = "#28a745"; // green
+            } else {
+              button.innerText = "Failed";
+              button.style.backgroundColor = "#dc3545"; // red
+            }
+          }, 2000);
+        }, 2000);
+      }
+    </script>
+  </body>
 </html>
